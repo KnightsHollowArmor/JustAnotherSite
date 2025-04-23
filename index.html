@@ -5,11 +5,32 @@
   body {
     font-family: sans-serif;
     background-color: #f4f4f4;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 40px; /* Adiciona espaço no topo para o botão não sobrepor o conteúdo */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  }
+
+  .config-button-container {
+    position: fixed; /* Fixa o botão na tela mesmo durante a rolagem */
+    top: 10px;
+    left: 10px;
+    z-index: 10; /* Garante que o botão fique acima de outros elementos */
+  }
+
+  .config-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .config-button img {
+    width: 30px;
+    height: auto;
+    display: block;
   }
 
   .container {
@@ -18,7 +39,6 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 350px;
-    position: relative; /* Necessário para posicionar o botão relativamente ao container */
   }
 
   h1 {
@@ -85,25 +105,6 @@
     color: #333;
   }
 
-  .image-button-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-
-  .image-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-  .image-button img {
-    width: 30px;
-    height: auto;
-    display: block;
-  }
-
   .password-toggle {
     display: flex;
     align-items: center;
@@ -116,12 +117,12 @@
 </style>
 </head>
 <body>
+  <div class="config-button-container">
+    <button class="config-button" onclick="Config()">
+      <img src="caminho/para/sua-imagem.png" alt="Configurações">
+    </button>
+  </div>
   <div class="container">
-    <div class="image-button-container">
-      <button class="image-button" onclick="Config()">
-        <img src="caminho/para/sua-imagem.png">
-      </button>
-    </div>
     <h1>Login</h1>
     <form method="post">
       <div class="form-group">
