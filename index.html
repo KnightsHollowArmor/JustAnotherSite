@@ -65,21 +65,22 @@
     background-color: #4cae4c;
   }
 
-  .anonymous-entry {
-    text-align: center;
+  .account-options {
     margin-top: 20px;
+    text-align: center;
   }
 
-  .anonymous-entry p {
+  .account-options p {
     color: #777;
     font-size: 0.9em;
     cursor: pointer;
     padding: 10px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    margin-bottom: 5px; 
   }
 
-  .anonymous-entry p:hover {
+  .account-options p:hover {
     background-color: #f0f0f0;
     color: #333;
   }
@@ -105,6 +106,7 @@
     </form>
 
     <div class="anonymous-entry">
+      <p onclick="criarConta()">Criar uma conta</p>
       <p onclick="entrarAnonimamente()">Entrar anonimamente</p>
     </div>
   </div>
@@ -115,8 +117,11 @@
       const format_num = String(random_num).padStart(4, '0');
       const anonymous_nick = "Anonymous" + format_num;
       alert("Seu nick é: " + anonymous_nick);
-
       console.log("Usuário entrou anonimamente com o nick: " + anonymous_nick);
+    }
+    
+    function criarConta() {
+      alert("Você será redirecionado para a página de criação de conta.");
     }
   </script>
 </body>
