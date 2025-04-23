@@ -19,6 +19,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 350px;
+    position: relative; /* Necessário para posicionar o botão relativamente ao container */
   }
 
   h1 {
@@ -77,17 +78,40 @@
     padding: 10px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
   }
 
   .account-options p:hover {
     background-color: #f0f0f0;
     color: #333;
   }
+
+  .image-button-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  .image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .image-button img {
+    width: 30px;
+    height: auto;
+    display: block;
+  }
 </style>
 </head>
 <body>
   <div class="container">
+    <div class="image-button-container">
+      <button class="image-button" onclick="funcaoDoBotaoImagem()">
+        </button>
+    </div>
     <h1>Login</h1>
     <form method="post">
       <div class="form-group">
@@ -105,7 +129,7 @@
       <button type="submit">Entrar</button>
     </form>
 
-    <div class="anonymous-entry">
+    <div class="account-options">
       <p onclick="criarConta()">Criar uma conta</p>
       <p onclick="entrarAnonimamente()">Entrar anonimamente</p>
     </div>
@@ -113,20 +137,23 @@
 
   <script>
     function entrarAnonimamente() {
-      const random_num = Math.floor(Math.random() * 9999);
-      const format_num = String(random_num).padStart(4, '0');
-      const anonymous_nick = "Anonymous" + format_num;
-      alert("Seu nick é: " + anonymous_nick);
-      console.log("Usuário entrou anonimamente com o nick: " + anonymous_nick);
+      const numeroAleatorio = Math.floor(Math.random() * 10000);
+      const numeroFormatado = String(numeroAleatorio).padStart(4, '0');
+      const nickAnonimo = "Anonimous" + numeroFormatado;
+      alert("Seu nick é: " + nickAnonimo);
+      console.log("Usuário entrou anonimamente com o nick: " + nickAnonimo);
+      
     }
-    
+
     function criarConta() {
       alert("Você será redirecionado para a página de criação de conta.");
-    }
-  </script>
-</body>
-</html>
 
+    }
+
+    function funcaoDoBotaoImagem() {
+      alert("Botão de imagem clicado!");
+      
+    }
   </script>
 </body>
 </html>
