@@ -1,26 +1,127 @@
 <!DOCTYPE html>
-<body>
-    <div class="container">
-        <h1>Login</h1>
-        <form method="post">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu email">
-            </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
+<html>
+<head>
+<title>Login</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
 
-        <div class="anonymous-entry">
-            <p>Entrar anonimamente</p>
-        </div>
+  .container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 0.9em;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+  }
+
+  button[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #4cae4c;
+  }
+
+  .anonymous-entry {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .anonymous-entry p {
+    color: #777;
+    font-size: 0.9em;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .anonymous-entry p:hover {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form method="post">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Digite seu email">
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="anonymous-entry">
+      <p onclick="entrarAnonimamente()">Entrar anonimamente</p>
     </div>
+  </div>
+
+  <script>
+    function entrarAnonimamente() {
+      const random_num = Math.floor(Math.random() * 9999);
+      const format_num = String(random_num).padStart(4, '0');
+      const anonymous_nick = "Anonymous" + format_num;
+      alert("Seu nick é: " + anonymous_nick);
+
+      console.log("Usuário entrou anonimamente com o nick: " + anonymous_nick);
+    }
+  </script>
+</body>
+</html>
+
+  </script>
 </body>
 </html>
