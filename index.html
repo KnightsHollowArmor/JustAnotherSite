@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Login</title>
+<head><title>JustAnoterSite:Login</title>
 <style>
   body {
     font-family: sans-serif;
@@ -104,13 +103,24 @@
     height: auto;
     display: block;
   }
+
+  .password-toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .password-toggle input[type="checkbox"] {
+    margin-right: 5px;
+  }
 </style>
 </head>
 <body>
   <div class="container">
     <div class="image-button-container">
-      <button class="image-button" onclick="funcaoDoBotaoImagem()">
-        </button>
+      <button class="image-button" onclick="Config()">
+        <img src="caminho/para/sua-imagem.png">
+      </button>
     </div>
     <h1>Login</h1>
     <form method="post">
@@ -125,6 +135,10 @@
       <div class="form-group">
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+      </div>
+      <div class="password-toggle">
+        <input type="checkbox" id="mostrarSenha" onchange="togglePasswordVisibility()">
+        <label for="mostrarSenha">Mostrar senha</label>
       </div>
       <button type="submit">Entrar</button>
     </form>
@@ -142,7 +156,7 @@
       const nickAnonimo = "Anonimous" + numeroFormatado;
       alert("Seu nick é: " + nickAnonimo);
       console.log("Usuário entrou anonimamente com o nick: " + nickAnonimo);
-      
+
     }
 
     function criarConta() {
@@ -150,9 +164,19 @@
 
     }
 
-    function funcaoDoBotaoImagem() {
+    function Config() {
       alert("Botão de imagem clicado!");
-      
+
+    }
+
+    function togglePasswordVisibility() {
+      const senhaInput = document.getElementById("senha");
+      const mostrarSenhaCheckbox = document.getElementById("mostrarSenha");
+      if (mostrarSenhaCheckbox.checked) {
+        senhaInput.type = "text";
+      } else {
+        senhaInput.type = "password";
+      }
     }
   </script>
 </body>
