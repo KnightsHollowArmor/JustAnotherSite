@@ -1,0 +1,440 @@
+body {
+    font-family: sans-serif;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    /* Adiciona a imagem de fundo */
+    background-image: url('../assets/background.jpg'); /* Certifique-se de que o caminho está correto */
+    background-size: cover; /* Ajusta a imagem para cobrir todo o fundo, mantendo a proporção */
+    background-repeat: no-repeat; /* Impede a repetição da imagem */
+    background-attachment: fixed; /* Mantém o fundo fixo durante a rolagem (opcional) */
+}
+
+
+.settings-button-container {
+    position: fixed;
+    top: 0; /* Alterado para ficar fixo no topo */
+    right: 10px;
+    z-index: 20;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    width: auto;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.3s ease-in-out, background-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1); /* Cor padrão */
+}
+
+.settings-button-container.open {
+    right: 260px;
+}
+
+.settings-button {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.settings-button img {
+    width: 20px;
+    height: auto;
+    display: block;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.settings-button img.open {
+    transform: rotate(180deg);
+}
+
+.container {
+    background-color: #fff; /* Cor de fundo padrão do container */
+    color: #333; /* Cor do texto padrão do container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    transition: filter 0.3s ease, margin-right 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.container.settings-open {
+    margin-right: 250px;
+    filter: blur(5px);
+}
+
+h1 {
+    text-align: center;
+    color: inherit; /* Herda a cor do container */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555; /* Cor padrão da label */
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    background-color: #fff; /* Cor de fundo padrão do input */
+    color: #333; /* Cor do texto padrão do input */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+.account-options {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.account-options p {
+    color: #777;
+    font-size: 0.9em;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.account-options p:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.password-toggle {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.password-toggle input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+#loading-overlay {
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#loading-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#loading-image {
+    width: 80px;
+    height: auto;
+    z-index: 10000;
+}
+
+.settings-panel select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.settings-panel select:focus {
+    outline: none;
+    border-color: #5cb85c;
+    box-shadow: 0 0 5px rgba(92, 184, 92, 0.5);
+}
+
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Inicialmente fora da tela */
+    width: 250px;
+    height: 100%;
+    background-color: #f9f9f9;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 15;
+    transition: right 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+    padding: 25px;
+    box-sizing: border-box;
+    color: #333;
+    display: none; /* Inicialmente escondido */
+}
+
+.settings-panel.open {
+    right: 0; /* Painel visível */
+    display: block; /* Garante que seja exibido quando a classe 'open' é adicionada */
+}
+
+.settings-panel h2 {
+    margin-top: 0;
+    color: inherit; /* Herda a cor do settings-panel */
+    margin-bottom: 15px;
+}
+
+.settings-panel label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.settings-panel input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Aparência Clara */
+.light-mode body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.light-mode .container {
+    background-color: #fff;
+    color: #212529;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode h1 {
+    color: inherit;
+}
+
+.light-mode label {
+    color: #495057;
+}
+
+.light-mode input[type="text"],
+.light-mode input[type="email"],
+.light-mode input[type="password"] {
+    background-color: #fff;
+    color: #212529;
+    border-color: #ced4da;
+}
+
+.light-mode button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.light-mode .account-options p {
+    color: #6c757d;
+}
+
+.light-mode .account-options p:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+.light-mode .settings-panel {
+    background-color: #f8f9fa;
+    color: #212529;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .settings-panel h2 {
+    color: inherit;
+}
+
+.light-mode .settings-panel label {
+    color: #495057;
+}
+
+.light-mode .settings-panel select {
+    background-color: #fff;
+    color: #212529;
+    border-color: #ced4da;
+}
+
+.light-mode .settings-button-container {
+    background-color: rgba(220, 220, 220, 0.5);
+}
+
+/* Aparência Cinza */
+.gray-mode body {
+    background-color: #6c757d;
+    color: #f8f9fa;
+}
+
+.gray-mode .container {
+    background-color: #495057;
+    color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.gray-mode h1 {
+    color: inherit;
+}
+
+.gray-mode label {
+    color: #ced4da;
+}
+
+.gray-mode input[type="text"],
+.gray-mode input[type="email"],
+.gray-mode input[type="password"] {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.gray-mode button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.gray-mode .account-options p {
+    color: #ced4da;
+}
+
+.gray-mode .account-options p:hover {
+    background-color: #6c757d;
+    color: #f8f9fa;
+}
+
+.gray-mode .settings-panel {
+    background-color: #6c757d;
+    color: #f8f9fa;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.gray-mode .settings-panel h2 {
+    color: inherit;
+}
+
+.gray-mode .settings-panel label {
+    color: #ced4da;
+}
+
+.gray-mode .settings-panel select {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.gray-mode .settings-button-container {
+    background-color: rgba(108, 117, 125, 0.5);
+}
+
+/* Aparência Escura */
+.dark-mode body {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+.dark-mode .container {
+    background-color: #343a40;
+    color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode h1 {
+    color: inherit;
+}
+
+.dark-mode label {
+    color: #adb5bd;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="email"],
+.dark-mode input[type="password"] {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.dark-mode button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.dark-mode .account-options p {
+    color: #ced4da;
+}
+
+.dark-mode .account-options p:hover {
+    background-color: #495057;
+    color: #f8f9fa;
+}
+
+.dark-mode .settings-panel {
+    background-color: #343a40;
+    color: #f8f9fa;
+    box-shadow: -5px 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .settings-panel h2 {
+    color: inherit;
+}
+
+.dark-mode .settings-panel label {
+    color: #adb5bd;
+}
+
+.dark-mode .settings-panel select {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.dark-mode .settings-button-container {
+    background-color: rgba(52, 58, 64, 0.5);
+}

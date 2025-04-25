@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head><title>JustAnoterSite:Login</title>
+  <link rel="stylesheet" href="css/LoginStyle.css">
+</head>
+<body>
+    <div class="settings-button-container">
+        <button class="settings-button" onclick="toggleSettings()">
+            <img id="settings-icon" src="assets/arrow.png" alt="Configurações">
+        </button>
+    </div>
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="text">Nome de usuário ou email:</label>
+                <input type="text" id="text" name="email" placeholder="Digite seu nome de usuário ou email">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            </div>
+            <div class="password-toggle">
+              <input type="checkbox" id="mostrarSenha" onchange="togglePasswordVisibility()">
+              <label for="mostrarSenha">Mostrar senha</label>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div class="account-options">
+            <p onclick="mostrarLoading()">Criar uma conta</p>
+            <p onclick="entrarAnonimamente()">Entrar anonimamente</p>
+        </div>
+    </div>
+
+    <div id="loading-overlay">
+        Carregando...
+    </div>
+
+    <div class="settings-panel">
+        <h2>Configurações</h2>
+        <div>
+            <h3>Posição do Painel</h3>
+            <select id="settingsPosition" onchange="updateSettingsPosition(this.value)">
+                <option value="right" selected>Direita</option>
+                <option value="left">Esquerda</option>
+                <option value="top">Cima</option>
+                <option value="bottom">Baixo</option>
+            </select>
+        </div>
+        <hr>
+        <div>
+            <h3>Temas Padrão</h3>
+            <select id="themeSelector" onchange="changeTheme(this.value)">
+                <option value="light">Claro</option>
+                <option value="gray" selected>Cinza</option>
+                <option value="dark">Escuro</option>
+            </select>
+        </div>
+        <hr>
+    </div>
+
+    <script src="javascript/LoginScript.js"></script>
+</body>
+</html>

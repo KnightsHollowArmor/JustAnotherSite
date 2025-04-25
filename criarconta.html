@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head><title>JustAnoterSite:CriarConta</title>
+    <link rel="stylesheet" href="css/CriarContaStyle.css">
+</head>
+<body>
+    <div class="settings-button-container">
+        <button class="settings-button" onclick="toggleSettings()">
+            <img id="settings-icon" src="assets/arrow.png" alt="Configurações">
+        </button>
+    </div>
+    <div class="container">
+        <h1>Criação de Conta</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email">
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+            </div>
+            <div class="password-toggle">
+                <input type="checkbox" id="mostrarSenha" onchange="togglePasswordVisibility()">
+                <label for="mostrarSenha">Mostrar senha</label>
+            </div>
+            <button type="submit">Criar Conta</button>
+        </form>
+
+        <div class="account-options">
+            <p onclick="mostrarLoading()">Fazer login</p>
+            <p onclick="entrarAnonimamente()">Entrar anonimamente</p>
+        </div>
+    </div>
+
+    <div id="loading-overlay">
+        Carregando...
+    </div>
+
+    <div class="settings-panel">
+        <h2>Configurações</h2>
+        <div>
+            <h3>Posição do Painel</h3>
+            <select id="settingsPosition" onchange="updateSettingsPosition(this.value)">
+                <option value="right" selected>Direita</option>
+                <option value="left">Esquerda</option>
+                <option value="top">Cima</option>
+                <option value="bottom">Baixo</option>
+            </select>
+        </div>
+        <hr>
+        <div>
+            <h3>Temas Padrão</h3>
+            <select id="themeSelector" onchange="changeTheme(this.value)">
+                <option value="light">Claro</option>
+                <option value="gray" selected>Cinza</option>
+                <option value="dark">Escuro</option>
+            </select>
+        </div>
+        <hr>
+    </div>
+
+    <script src="javascript/CriarContaScript.js"></script>
+</body>
+</html>
